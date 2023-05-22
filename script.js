@@ -62,6 +62,13 @@ var quizQ = [
 ];
 var score = 0;
 
+for(var i=0; i < quizQ.length; i++){
+    //ask user the question
+
+}
+
 
 //Now to show the questions created
 
+//Call functions
+countTimer();
