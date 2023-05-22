@@ -1,0 +1,11 @@
+:root{
+    --textcolor: lavender;
+    --background: beige;
+}
+
+*{
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: fantasy;
+    background-color: var(--background);
+}
