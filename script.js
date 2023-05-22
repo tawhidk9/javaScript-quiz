@@ -1,4 +1,22 @@
-//Created global variable for quiz questions
+//Countdown Timer
+var countDown = document.querySelector('.timer');
+
+function countTimer() {
+    var timeLeft = 80;
+  
+    var timeInterval = setInterval(function () {
+      countDown.textContent = "Time: " + timeLeft
+      timeLeft--;
+  
+      if(timeLeft < 0){
+        countDown.textContent = "";
+        clearInterval(timeInterval);
+        displayMessage()
+      }
+    }, 1000);
+  }
+
+//Created variable for quiz questions and set scorecount to 0
 var quizQ = [
 	{
 		question: "Commonly used primitive data types DO NO include",
@@ -42,6 +60,8 @@ var quizQ = [
 	}
 
 ];
+var score = 0;
+
 
 //Now to show the questions created
-function displayQuestions(questions, quizContainer)
+
