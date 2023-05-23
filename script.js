@@ -1,9 +1,8 @@
 //Countdown Timer
 var countDown = document.querySelector('.timer');
+var timeLeft = 80;
 
 function countTimer() {
-    var timeLeft = 80;
-  
     var timeInterval = setInterval(function () {
       countDown.textContent = "Time: " + timeLeft
       timeLeft--;
@@ -17,16 +16,18 @@ function countTimer() {
   }
 
 //Created variable for quiz questions and set scorecount to 0
+var currentQ = 0
+var score = 0;
 var quizQ = [
 	{
 		question: "Commonly used primitive data types DO NO include",
-		answers: {
-			a: 'Strings',
-			b: 'Booleans',
-			c: 'Interger',
-            d: 'Alerts'
-		},
-		correctAnswer: 'd'
+		answers: 
+			['Strings',
+			'Booleans',
+			'Interger',
+            'Alerts'],
+			
+		correctAnswer: 'Alerts'
 	},
 	{
 		question: "An IF/ELSE statement is enclosed within",
@@ -60,14 +61,35 @@ var quizQ = [
 	}
 
 ];
-var score = 0;
 
-for(var i=0; i < quizQ.length; i++){
-    //ask user the question
+
+// for(currentQ; i < quizQ.length; currentQ++){
+//     //ask user the question
+// }
+function checkAnswer(event){
+	event.target.textContent = "Alerts";
+	if (event.target.textContent === quizQ[currentQ].correctAnswer){
+		currentQ++;
+		score+=25;
+		nextQuestion;
+	}else{
+		currentQ++;
+		timeLeft-=10;
+	}
+}
+
+function startGame(){
+	countTimer();
+	var displayQ = document.querySelector("#quiz");
+	displayQ.textContent = quizQ[currentQ].question;
+	var displayA = document.querySelectorAll(".answer");
+	displayA.forEach(function(currentbtn, index){
+		currentbtn.textContent = quizQ[currentQ].answers[index];
+		currentbtn.addEventListener("click", function(event){checkAnswer(event)});
+	})
 }
 
 
-//Now to show the questions created
 
 //Call functions
-countTimer();
+startGame();
