@@ -64,7 +64,6 @@ var score = 0;
 
 for(var i=0; i < quizQ.length; i++){
     //ask user the question
-
 }
 
 
