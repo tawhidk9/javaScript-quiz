@@ -21,13 +21,14 @@ var score = 0;
 var quizQ = [
 	{
 		question: "Commonly used primitive data types DO NO include",
-		answers: 
-			['Strings',
-			'Booleans',
-			'Interger',
-            'Alerts'],
-			
-		correctAnswer: 'Alerts'
+		answers: {
+			a:'Strings',
+			b:'Booleans',
+			c:'Interger',
+            d:'Alerts'
+
+		},
+			correctAnswer: 'd'
 	},
 	{
 		question: "An IF/ELSE statement is enclosed within",
@@ -82,6 +83,7 @@ function startGame(){
 	countTimer();
 	var displayQ = document.querySelector("#quiz");
 	displayQ.textContent = quizQ[currentQ].question;
+	
 	var displayA = document.querySelectorAll(".answer");
 	displayA.forEach(function(currentbtn, index){
 		currentbtn.textContent = quizQ[currentQ].answers[index];
