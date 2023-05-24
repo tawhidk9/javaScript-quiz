@@ -1,10 +1,11 @@
 //Countdown Timer
 var countDown = document.querySelector('.timer');
 var timeLeft = 80;
+var timeInterval;
 
 function countTimer() {
     var timeInterval = setInterval(function () {
-      countDown.textContent = "Time: " + timeLeft
+      countDown.textContent = "Time: " + timeLeft;
       timeLeft--;
   
       if(timeLeft < 0){
@@ -44,14 +45,16 @@ var quizQ = [
 //display the questions
 var currentQ = 0 //track current question index
 function displayQuestion(){
-	var questionEl = document.getElementById("question")
-	var choicesEl = document.getElementById("choices")
-	var currentQuestionEl = quizQ[currentQ];
+	var questionEl = document.getElementById("question");
+	var choicesEl = document.getElementById("choices");
+	var feedbackEl = document.getElementById("feedback");
 
 	//questionEl text is whatever the currentQuestionEl currentQ value is
-	questionEl.textContent = currentQuestionEl.question; 
+	questionEl.textContent = quizQ[currentQ].question; 
 	//choices get input into html 
 	choicesEl.innerHTML = "";
+	//Reset the answer feedback
+	feedbackEl.textContent = "";
 
 	//for each choice create a list item and make clickable 
 	currentQuestionEl.answers.forEach(function(choice, index) {
@@ -67,13 +70,16 @@ function displayQuestion(){
 //check answers to displayed questions
 function checkAnswer(choiceIndex){
 	var corrAnswerIndex = quizQ[currentQ].correctAnswer;
+	var feedbackEl = document.getElementById("feedback");
 
   if (choiceIndex === corrAnswerIndex) {
     // User selected the correct answer
     // Add code for handling correct answers or scoring
+	feedbackEl.textContent = "Correct!";
   } else {
-    // User selected the wrong answer
-    // Add code for handling incorrect answers or scoring
+    // Deduct 10 seconds from the timer
+    timer -= 10;
+	feedbackEl.textContent = "Wrong!";
   }
 
   currentQ++; // Move to the next question
