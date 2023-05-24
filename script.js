@@ -1,7 +1,6 @@
 //Countdown Timer
 var countDown = document.querySelector('.timer');
 var timeLeft = 80;
-var timeInterval;
 
 function countTimer() {
     var timeInterval = setInterval(function () {
@@ -11,7 +10,7 @@ function countTimer() {
       if(timeLeft < 0){
         countDown.textContent = "";
         clearInterval(timeInterval);
-        displayMessage()
+        displayMessage("Times Up!")
       }
     }, 1000);
   }
@@ -42,30 +41,28 @@ var quizQ = [
 
 ];
 
-//display the questions
-var currentQ = 0 //track current question index
-function displayQuestion(){
-	var questionEl = document.getElementById("question");
-	var choicesEl = document.getElementById("choices");
-	var feedbackEl = document.getElementById("feedback");
+// Display the questions
+var currentQ = 0; // Track current question index
 
-	//questionEl text is whatever the currentQuestionEl currentQ value is
-	questionEl.textContent = quizQ[currentQ].question; 
-	//choices get input into html 
-	choicesEl.innerHTML = "";
-	//Reset the answer feedback
-	feedbackEl.textContent = "";
+function displayQuestion() {
+  var questionEl = document.getElementById("question");
+  var choicesEl = document.getElementById("choices");
+  var feedbackEl = document.getElementById("feedback");
 
-	//for each choice create a list item and make clickable 
-	currentQuestionEl.answers.forEach(function(choice, index) {
-		var li = document.createElement("li");
-		li.textContent = choice;
-		li.addEventListener("click", function () {
-			checkAnswer(index);
-		});
-		choicesEl.appendChild(li);
-	});
+  questionEl.textContent = quizQ[currentQ].question;
+  choicesEl.innerHTML = "";
+  feedbackEl.textContent = ""; // Reset answer feedback
+
+  quizQ[currentQ].answers.forEach(function (choice, index) {
+    var li = document.createElement("li");
+    li.textContent = choice;
+    li.addEventListener("click", function () {
+      checkAnswer(index);
+    });
+    choicesEl.appendChild(li);
+  });
 }
+
 
 //check answers to displayed questions
 function checkAnswer(choiceIndex){
@@ -74,7 +71,7 @@ function checkAnswer(choiceIndex){
 
   if (choiceIndex === corrAnswerIndex) {
     // User selected the correct answer
-    // Add code for handling correct answers or scoring
+    // Added code for handling correct answers
 	feedbackEl.textContent = "Correct!";
   } else {
     // Deduct 10 seconds from the timer
@@ -95,8 +92,9 @@ function checkAnswer(choiceIndex){
 function startGame(){
 	countTimer();
 	displayQuestion();
+	checkAnswer();
 }
-
+document.getElementById("startButton").addEventListener("click", startGame);
 
 
 
