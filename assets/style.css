@@ -23,3 +23,7 @@ header .timer{
     justify-content: end;
     padding: 2em;
 }
+
+#choices {
+    list-style-type: decimal;
+  }
