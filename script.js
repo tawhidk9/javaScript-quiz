@@ -1,3 +1,8 @@
+//DOM
+var scoreBoard = document.querySelector('.score')
+var endGM = document.querySelector('#results')
+var displayQuiz = document.querySelector('quiz')
+var getResults = document.querySelector('.hide')
 //Countdown Timer
 var countDown = document.querySelector('.timer');
 var timeLeft;
@@ -49,11 +54,11 @@ var currentQ = 0; // Track current question index
 function displayQuestion() {
   var questionEl = document.getElementById("question");
   var choicesEl = document.getElementById("choices");
-  var feedbackEl = document.getElementById("feedback");
+  // var feedbackEl = document.getElementById("feedback");
 
   questionEl.textContent = quizQ[currentQ].question;
   choicesEl.innerHTML = "";
-  feedbackEl.textContent = ""; // Reset answer feedback
+  // feedbackEl.textContent = ""; // Reset answer feedback
 
   quizQ[currentQ].answers.forEach(function (choice, index) {
     var li = document.createElement("li");
@@ -75,6 +80,8 @@ function checkAnswer(choiceIndex){
     // User selected the correct answer
     // Added code for handling correct answers
 	feedbackEl.textContent = "Correct!";
+  score+=10;
+  scoreBoard.textContent = `Score: ${score}`
   } else {
     // Deduct 10 seconds from the timer
     timeLeft -= 10;
@@ -89,6 +96,27 @@ function checkAnswer(choiceIndex){
   }
 	
 }
+
+function endGame(){
+  displayQuiz.textContent = '';
+  
+  var endScreenTitle = document.createElement('<h2>');
+  endGM.appendChild(endScreenTitle);
+  endScreenTitle.textContent = "Checkout how you did!";
+
+  //user info and score
+
+  
+  //adds results button and interaction
+  getResults.classList.remove('hide');
+  getResults.addEventListener('click',)
+
+
+
+}
+
+
+
 
 function startGame(){
 	countTimer();

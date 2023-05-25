@@ -27,3 +27,7 @@ header .timer{
 #choices {
     list-style-type: decimal;
   }
+
+  .hide{
+    display: none;
+  }
