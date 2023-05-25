@@ -1,9 +1,11 @@
 //Countdown Timer
 var countDown = document.querySelector('.timer');
-var timeLeft = 80;
+var timeLeft;
 
-function countTimer() {
+function countTimer() { 
+    timeLeft = 80;
     var timeInterval = setInterval(function () {
+      console.log(timeLeft)
       countDown.textContent = "Time: " + timeLeft;
       timeLeft--;
   
@@ -75,7 +77,7 @@ function checkAnswer(choiceIndex){
 	feedbackEl.textContent = "Correct!";
   } else {
     // Deduct 10 seconds from the timer
-    timer -= 10;
+    timeLeft -= 10;
 	feedbackEl.textContent = "Wrong!";
   }
 
@@ -83,8 +85,7 @@ function checkAnswer(choiceIndex){
 
   if (currentQ < quizQ.length) {
     displayQuestion();
-  } else {
-    // Quiz is finished, display results or perform any final actions
+  // } else {
   }
 	
 }
@@ -92,9 +93,9 @@ function checkAnswer(choiceIndex){
 function startGame(){
 	countTimer();
 	displayQuestion();
-	checkAnswer();
 }
-document.getElementById("startButton").addEventListener("click", startGame);
+document.getElementById("startButton").addEventListener("click", function(event){
+  startGame()});
 
 
 
